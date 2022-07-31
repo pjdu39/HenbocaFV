@@ -10,6 +10,8 @@ namespace HenbocaFV
     {
         static void Main(string[] args)
         {
+            // Hacer un método que cree instancias las tablas que se van a usar. Algo como tabla = CreateTable(tablaChild, "path")
+
             #region Lectura
 
             var tablaTest = new TablaTest();
@@ -44,7 +46,6 @@ namespace HenbocaFV
             #region Funciones
 
             tablaTest.Potencia();
-            tablaTest.Corriente2();
 
             #endregion
 
