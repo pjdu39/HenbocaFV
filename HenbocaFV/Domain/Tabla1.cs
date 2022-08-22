@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HenbocaFV.Domain
 {
-    public class TablaTest : TablaAbstract
+    public class Tabla1 : TablaAbstract
     {
         public void Potencia()
         {

@@ -14,14 +14,16 @@ namespace HenbocaFV
 
             #region Lectura
 
-            var tablaTest = new TablaTest();
+            //var tabla1 = UnitOfWork.CreateTable("C:\\Celena\\CSV_de_pruebas.csv");
+
+            var tabla1 = new Tabla1();
 
             var rawHeaders = File.ReadAllLines("C:\\Celena\\CSV_de_pruebas.csv")
                                     .FirstOrDefault();
 
-            tablaTest.Cabeceras = UnitOfWork.CreateHeader(rawHeaders);
+            tabla1.Cabeceras = UnitOfWork.CreateHeader(rawHeaders);
 
-            foreach (var header in tablaTest.Cabeceras)
+            foreach (var header in tabla1.Cabeceras)
             {
                 Console.WriteLine(header);
             }
@@ -33,10 +35,10 @@ namespace HenbocaFV
             foreach (var line in lines)
             {
                 var registro = UnitOfWork.FromCsv(line);
-                tablaTest.Registra(registro);
+                tabla1.Registra(registro);
             }
 
-            foreach (var r in tablaTest.Registros)
+            foreach (var r in tabla1.Registros)
             {
                 Console.WriteLine(r.Datos.Select(x => x.Valor));
             }
@@ -45,7 +47,7 @@ namespace HenbocaFV
 
             #region Funciones
 
-            tablaTest.Potencia();
+            tabla1.Potencia();
 
             #endregion
 
@@ -55,14 +57,14 @@ namespace HenbocaFV
 
             var csv = string.Empty;
 
-            foreach (var c in tablaTest.Cabeceras)
+            foreach (var c in tabla1.Cabeceras)
             {
                 csv += $"{ c.Literal };";
             }
 
             csv += Environment.NewLine;
 
-            foreach (var r in tablaTest.Registros)
+            foreach (var r in tabla1.Registros)
             {
                 foreach (var dato in r.Datos)
                 {
