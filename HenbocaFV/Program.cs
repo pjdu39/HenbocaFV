@@ -10,15 +10,17 @@ namespace HenbocaFV
     {
         static void Main(string[] args)
         {
-            // Hacer un método que cree instancias las tablas que se van a usar. Algo como tabla = CreateTable(tablaChild, "path")
+            var csvLectura = "C:\\Celena\\CSV_de_pruebas.csv";
+            var csvEscritura = "C:\\Celena\\CSV_de_pruebas.csv";
 
             #region Lectura
 
+            // Hacer un método que cree instancias las tablas que se van a usar. Algo como tabla = CreateTable(tablaChild, "path")
             //var tabla1 = UnitOfWork.CreateTable("C:\\Celena\\CSV_de_pruebas.csv");
 
             var tabla1 = new Tabla1();
 
-            var rawHeaders = File.ReadAllLines("C:\\Celena\\CSV_de_pruebas.csv")
+            var rawHeaders = File.ReadAllLines(csvLectura)
                                     .FirstOrDefault();
 
             tabla1.Cabeceras = UnitOfWork.CreateHeader(rawHeaders);
@@ -28,7 +30,7 @@ namespace HenbocaFV
                 Console.WriteLine(header);
             }
 
-            var lines = File.ReadAllLines("C:\\Celena\\CSV_de_pruebas.csv")
+            var lines = File.ReadAllLines(csvLectura)
                                            .Skip(1)
                                            .ToList();
 
@@ -53,7 +55,7 @@ namespace HenbocaFV
 
             #region Escritura
 
-            using StreamWriter writer = new StreamWriter("C:\\Celena\\CVS_pruebas_de_escritura.csv");
+            using StreamWriter writer = new StreamWriter(csvEscritura);
 
             var csv = string.Empty;
 
