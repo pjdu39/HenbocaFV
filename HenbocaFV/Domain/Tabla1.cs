@@ -17,12 +17,20 @@ namespace HenbocaFV.Domain
 
             var registrosNuevos = new List<Registro>();
 
+            var ultimaCorriente = Registros
+                .Select(x => x.Datos
+                    .Where(y => y.Id == idVoltaje)
+                    .Select(y => y.Valor)
+                    )
+                .LastOrDefault()
+                .FirstOrDefault();
+
             foreach (var r in Registros)
             {
                 var v = GetValue(r, idVoltaje);
                 var c = GetValue(r, idCorriente);
 
-                var formula = v * c;
+                var formula = v * c + ultimaCorriente;
 
                 r.Apply(idColumnaResultado, formula);
 
