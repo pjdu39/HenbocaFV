@@ -1,6 +1,7 @@
 ﻿using HenbocaFV.Estructuras;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HenbocaFV
@@ -63,6 +64,19 @@ namespace HenbocaFV
                 }
 
             }
+
+            return result;
+        }
+
+        public static decimal? GetLastValue(List<Registro> registros, int idColumna)
+        {
+            var result = registros
+                .Select(x => x.Datos
+                    .Where(y => y.Id == idColumna)
+                    .Select(y => y.Valor)
+                    )
+                .LastOrDefault()
+                .FirstOrDefault();
 
             return result;
         }

@@ -19,13 +19,7 @@ namespace HenbocaFV.Domain
 
             var registrosNuevos = new List<Registro>();
 
-            var ultimaCorriente = Registros
-                .Select(x => x.Datos
-                    .Where(y => y.Id == idVoltaje)
-                    .Select(y => y.Valor)
-                    )
-                .LastOrDefault()
-                .FirstOrDefault();
+            var ultimoVoltaje = UnitOfWork.GetLastValue(Registros, idVoltaje);
 
             foreach (var r in Registros)
             {
